@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+</head>
+<body>
+  <h2>Bird Indentify Demo - Indian Languages - gemini-2.0-flash</h2>
+
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input type="file" name="img" /><br><br>
+      <input type="submit" value="Upload">
+    </form>
+    <hr>
+    <p><%= message %></p>
+    <% if (locals.birdData) { %> 
+      <img height="400" width="400" src="data:image/png;base64,<%= imgBuffer %>">
+        <h3>Your Bird is <%= locals.birdData.bird_name %></h3>
+        <h3>Scientific Name <%= locals.birdData.scientific_name %></h3>
+        <table>
+          <% for(const item of locals.birdData.indian_languages) {%> 
+          
+          <tr><th><%= item.language %></th><td><%= item.value %></td></tr>
+          <% } %>  
+
+        </table>
+      <% } %>  
+</body>
+</html>
