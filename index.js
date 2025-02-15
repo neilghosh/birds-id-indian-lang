@@ -46,7 +46,7 @@ const setupGemini = async function() {
     required: ["indian_languages", "bird_name", "scientific_name"]
   };
   model = genAI.getGenerativeModel({
-    model: "gemini-pro", generationConfig: {
+    model: "gemini-2.0-flash-001", generationConfig: {
       responseMimeType: "application/json",
       responseSchema: schema
     },
