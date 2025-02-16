@@ -1,6 +1,7 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const path = require('path')
+const bodyParser = require('body-parser');
 
 const { setupGemini } = require('./lib/geminiSetup'); 
 const { schema } = require('./lib/schema');
@@ -8,6 +9,7 @@ const { handleImage } = require('./lib/imageHandler');
 
 const app = express();
 app.use(fileUpload());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const projectId = 'demoneil';
 const apiKeyName = 'GEMINI_API_KEY';
@@ -31,6 +33,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/', async (req, res) => {
+  console.log(req.body);
   model = await setupGemini(projectId, apiKeyName, schema);
   await handleImage(req, res, model);
 });
