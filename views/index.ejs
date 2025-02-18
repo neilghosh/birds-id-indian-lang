@@ -6,7 +6,14 @@
 
   <link rel="stylesheet" type="text/css" href="/styles.css" />
   <script type="text/javascript">
+
     window.onload = function () {
+    const form = document.getElementById("form1");
+    const fileInput = document.getElementById("file");
+    window.addEventListener('paste', e => {
+      fileInput.files = e.clipboardData.files;
+      form.submit();
+    });
       document.getElementById("file").addEventListener('change', function () {
 
         const size =
@@ -29,7 +36,8 @@
             //   document.getElementById("output").style.display = "block";
             //   document.getElementById("output").src = this.result ;
             // });    
-          
+            form.submit();
+
           }
 
       });
@@ -40,10 +48,11 @@
 <body>
   <h2>Bird Identification Demo - Indian Languages</h2>
   <hr>
-
-  <form action="/" method="post" enctype="multipart/form-data">
+  <b>Choose a local file or just Paste it on this page.</b>
+  <br><br>
+  <form id="form1" action="/" method="post" enctype="multipart/form-data">
     <input id="file" type="file" name="img" /><br><br>
-    <input type="submit" value="Upload">
+    <!-- <input type="submit" value="Upload"> -->
   </form>
   <p id=output>
     <%= message %>
